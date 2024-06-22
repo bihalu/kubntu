@@ -30,6 +30,7 @@ apt update
 apt install -y containerd
 
 # configure containerd
+mkdir -p /etc/containerd
 containerd config default | tee /etc/containerd/config.toml
 
 # fix config pause container (use same version as kubernetes)
@@ -464,6 +465,7 @@ systemctl enable --now iscsid $SUPRESS_STDERR
 
 ################################################################################
 # containerd config
+mkdir -p /etc/containerd
 containerd config default | tee /etc/containerd/config.toml $SUPRESS_OUTPUT
 
 # fix config pause container (use same version as kubernetes)
