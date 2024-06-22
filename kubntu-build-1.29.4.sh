@@ -163,16 +163,16 @@ registry.k8s.io/defaultbackend-amd64:1.5
 # metrics-server v0.7.1 -> https://artifacthub.io/packages/helm/metrics-server/metrics-server/3.12.1
 registry.k8s.io/metrics-server/metrics-server:v0.7.1
 ################################################################################
-# calico v3.27.3 -> https://artifacthub.io/packages/helm/projectcalico/tigera-operator/3.27.3
-quay.io/tigera/operator:v1.32.7
-docker.io/calico/apiserver:v3.27.3
-docker.io/calico/cni:v3.27.3
-docker.io/calico/csi:v3.27.3
-docker.io/calico/kube-controllers:v3.27.3
-docker.io/calico/node-driver-registrar:v3.27.3
-docker.io/calico/node:v3.27.3
-docker.io/calico/pod2daemon-flexvol:v3.27.3
-docker.io/calico/typha:v3.27.3
+# calico v3.28.0 -> https://artifacthub.io/packages/helm/projectcalico/tigera-operator/3.28.0
+quay.io/tigera/operator:v1.34.0
+docker.io/calico/apiserver:v3.28.0
+docker.io/calico/cni:v3.28.0
+docker.io/calico/csi:v3.28.0
+docker.io/calico/kube-controllers:v3.28.0
+docker.io/calico/node-driver-registrar:v3.28.0
+docker.io/calico/node:v3.28.0
+docker.io/calico/pod2daemon-flexvol:v3.28.0
+docker.io/calico/typha:v3.28.0
 ################################################################################
 # k8s 1.29.4 -> https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.29.md#container-images
 registry.k8s.io/kube-apiserver:v1.29.4
@@ -219,7 +219,7 @@ readarray -t HELM_CHARTS <<EOL_HELM_CHARTS
 https://openebs.github.io/charts openebs openebs 3.9.0
 https://charts.jetstack.io jetstack cert-manager v1.14.5
 https://kubernetes.github.io/ingress-nginx ingress-nginx ingress-nginx 4.10.1
-https://projectcalico.docs.tigera.io/charts projectcalico tigera-operator v3.27.3
+https://projectcalico.docs.tigera.io/charts projectcalico tigera-operator v3.28.0
 https://kubernetes-sigs.github.io/metrics-server metrics-server metrics-server 3.12.1
 EOL_HELM_CHARTS
 
@@ -539,11 +539,11 @@ fi
 # cluster settings -> install cni calico 
 if [ \$CLUSTER = true ] ; then
   ################################################################################
-  # install projectcalico tigera-operator v3.27.3
-  gum spin --title "Install helm tigera-operator ..." -- helm upgrade --install tigera-operator helm/tigera-operator-v3.27.3.tgz \
+  # install projectcalico tigera-operator v3.28.0
+  gum spin --title "Install helm tigera-operator ..." -- helm upgrade --install tigera-operator helm/tigera-operator-v3.28.0.tgz \
     --create-namespace \
     --namespace tigera-operator \
-    --version v3.27.3
+    --version v3.28.0
   if [ \$? != 0 ] ; then
     # give grace period of 2 minutes to get node ready
     kubectl wait --timeout=2m --for=condition=Ready node/\$HOSTNAME
@@ -565,11 +565,11 @@ if [ \$SINGLE = true ] ; then
   kubectl taint nodes \$HOSTNAME node-role.kubernetes.io/control-plane=:NoSchedule- $SUPRESS_OUTPUT
 
   ################################################################################
-  # install projectcalico tigera-operator v3.27.3
-  gum spin --title "Install helm tigera-operator ..." -- helm upgrade --install tigera-operator helm/tigera-operator-v3.27.3.tgz \
+  # install projectcalico tigera-operator v3.28.0
+  gum spin --title "Install helm tigera-operator ..." -- helm upgrade --install tigera-operator helm/tigera-operator-v3.28.0.tgz \
     --create-namespace \
     --namespace tigera-operator \
-    --version v3.27.3
+    --version v3.28.0
   if [ \$? != 0 ] ; then
     # give grace period of 2 minutes to get node ready
     kubectl wait --timeout=2m --for=condition=Ready node/\$HOSTNAME
