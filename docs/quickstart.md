@@ -10,7 +10,7 @@ git clone https://github.com/bihalu/kubntu.git
 cd kubntu
 ./kubntu-build-1.29.4.sh
 ```
-Takes about 15 minutes ...  
+Takes about 10 minutes ...  
 coffe break ;-)
 
 ## 2. Setup kubernetes single node cluster 
